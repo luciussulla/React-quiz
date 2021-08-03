@@ -5,7 +5,7 @@ import Modal from './components/Modal'
 import SetupForm from './components/SetupForm'
 
 function App() {
-  const {waiting, loading, questions, index, correct} = useGlobalContext()
+  const {isModalOpen, checkAnswer, nextQuestion, waiting, loading, questions, index, correct} = useGlobalContext()
   // console.log("Waising is", waiting)
   // console.log("Loading is", loading)
   console.log("Questions provided to APP are", questions)
@@ -19,13 +19,12 @@ function App() {
     return <Loading/>
   }
 
-
   const {question, incorrect_answers, correct_answer} = questions[index]
   const answers = [...incorrect_answers, correct_answer]
 
   return (
     <main className="wrapper">
-      <Modal/>
+      <Modal />
       <section className="quiz">
         <p className="correct-answers">
           correct answers : {correct}/{index}
@@ -38,10 +37,13 @@ function App() {
               key={index} 
               className="answer-btn"
               dangerouslySetInnerHTML={{__html: answer}}
+              onClick={()=>checkAnswer(answer===correct_answer)}
             />
           })}
         </article>
-        <button className="next-question">Next Question</button>
+        <button className="next-question" 
+                onClick={nextQuestion}
+        >Next Question</button>
       </section>
     </main>
   )

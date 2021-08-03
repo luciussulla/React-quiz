@@ -3,7 +3,7 @@
   margin:  0; 
   box-sizing: border-box;
   color: black; 
-  font-size: 1.3rem; 
+  font-size: 1rem; 
 } 
 
 :root {
@@ -84,7 +84,46 @@ button.next-question {
   border-radius: 5px; 
   transform: translateX(50%);
 }
+
 button.next-question:hover {
   background-color: var(--primary-clr);
 }
 
+/* MODAL */ 
+
+.modal-container {
+  display: none; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  bottom: 0; 
+  right: 0; 
+  background-color: rgba(0,0,0,0.8);
+  z-index: 5; 
+}
+
+.isOpen {
+  display: block; 
+}
+
+.modal-content {
+  width: 400px; 
+  padding: 20px; 
+  background-color: #fff;
+  position: relative; 
+  top:50%; 
+  left:50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px; 
+  text-align: center;
+}
+.modal-content h2 {
+  font-size: 1.4rem; 
+  margin-bottom: 15px; 
+}
+
+button.play-again {
+  transform: translateX(0);
+  display: block; 
+  margin: 20px auto; 
+}

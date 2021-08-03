@@ -53,6 +53,35 @@ export default function AppProvider({children}) {
     fetchQuestions(tempUrl)
   }, [])
 
+  const nextQuestion = ()=> {
+    setIndex(oldIndex => {
+      const index = oldIndex + 1
+      if(index>questions.length-1) {
+        openModal()
+        return 0
+      } else {
+        return index
+      } 
+    })
+  }
+
+  const checkAnswer = (value)=> {
+    if(value) {
+      setCorrect(oldValue=>oldValue+1)
+    }
+    nextQuestion()
+  }
+
+  const openModal = ()=> {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = ()=> {
+    setIsModalOpen(false)
+    setWaiting(true)
+    setCorrect(0)
+  }
+
   return (
     <AppContext.Provider value={{
       waiting, 
@@ -62,6 +91,9 @@ export default function AppProvider({children}) {
       index, 
       error, 
       isModalOpen,
+      nextQuestion, 
+      checkAnswer,
+      closeModal,  
     }}>
       {children}
     </AppContext.Provider>
