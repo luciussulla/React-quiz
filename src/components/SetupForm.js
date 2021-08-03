@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function SetupForm() {
-  console.log("setup form run")
+  // console.log("setup form run")
   return (
     <div>
       <p>Setup form</p>

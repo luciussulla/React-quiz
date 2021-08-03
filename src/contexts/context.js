@@ -15,37 +15,41 @@ const AppContext = createContext()
 
 export default function AppProvider({children}) {
   console.log("App provider called")
-  const [waiting, setWaiting] = useState(false)
+  const [waiting, setWaiting] = useState(true)
   const [loading, setLoading] = useState(false)
-  const [questions,setQuestions] = useState(0)
+  const [questions,setQuestions] = useState([{"How many qubas":1}])
   const [correct, setCorrect] = useState(0)
   const [index, setIndex] = useState(0)
   const [error, setError] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const fetchQuestions = async (newUrl)=> {
-    setLoading(true)
+    console.log("Fetch questions run")
     setWaiting(false)
+    setLoading(true)
     const response = await axios(newUrl).catch(error => console.log(error))
-    console.log(response)
+    console.log("Resposne is: ",response)
     if(response) {
       const data = response.data.results
-      console.log(data)
+      console.log("Data fetched is: ", data)
       if(data.length) {
         setQuestions(data)
         setLoading(false)
         setWaiting(false)
         setError(false)
       } else {
+        console.log("fetched data array length is", response.data.length)
         setWaiting(true)
         setError(true)
       }
     } else {
       setWaiting(true)
+      console.log("Response returned as", response)
     }
   }
 
   useEffect(()=> {
+    console.log("fetch questions run")
     fetchQuestions(tempUrl)
   }, [])
 
