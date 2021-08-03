@@ -84,11 +84,19 @@ export default function AppProvider({children}) {
 
   const handleChange = (e)=> {
     console.log(e)
+    setQuiz(oldQuiz=> {
+      return {
+        ...oldQuiz, 
+        [e.target.name]: e.target.value
+      }
+    })    
   }
 
   const handleSubmit = (e)=> {
     e.preventDefault()
   }
+
+
 
   return (
     <AppContext.Provider value={{
