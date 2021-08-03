@@ -90,14 +90,17 @@ export default function AppProvider({children}) {
         [e.target.name]: e.target.value
       }
     })    
+    console.log(quiz)
   }
 
   const handleSubmit = (e)=> {
     e.preventDefault()
+    const {amount, difficulty, category}  = quiz
+    const tempUrl = `https://opentdb.com/api.php?amount=5&category=9&difficulty=easy&type=multiple`
+    const url = `${API_ENDPOINT}amount=${amount}&category=${table[category]}&difficulty=${difficulty}&type=multiple`
+    fetchQuestions(url)
   }
-
-
-
+  
   return (
     <AppContext.Provider value={{
       waiting, 
