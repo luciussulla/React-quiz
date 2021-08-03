@@ -127,3 +127,43 @@ button.play-again {
   display: block; 
   margin: 20px auto; 
 }
+
+/* Setup Form */ 
+.quiz-small {
+
+}
+
+.setup-form {
+  /* border: 1px solid black; */
+}
+
+.form-control {
+  margin: 10px 0; 
+}
+
+.form-control label {
+  /* border: 1px solid red;  */
+  text-align: left;
+  display: block; 
+  padding: 3px; 
+}
+
+.form-input {
+  margin: 3px 0;
+  display: block; 
+  background-color: var(--primary-clr);
+  text-align: left;
+  border-color: transparent; 
+  width: 100%; 
+  padding: 3px; 
+}
+
+form h2 {
+  font-size: 1.4rem; 
+  margin-bottom: 10px; 
+}
+
+.error {
+  color: red; 
+}
+

@@ -17,6 +17,11 @@ export default function AppProvider({children}) {
   console.log("App provider called")
   const [waiting, setWaiting] = useState(true)
   const [loading, setLoading] = useState(false)
+  const [quiz, setQuiz] = useState({
+    difficulty: 'easy', 
+    category: 'sports', 
+    amount: 5,
+  })
   const [questions,setQuestions] = useState([{"How many qubas":1}])
   const [correct, setCorrect] = useState(0)
   const [index, setIndex] = useState(0)
@@ -48,11 +53,6 @@ export default function AppProvider({children}) {
     }
   }
 
-  useEffect(()=> {
-    console.log("fetch questions run")
-    fetchQuestions(tempUrl)
-  }, [])
-
   const nextQuestion = ()=> {
     setIndex(oldIndex => {
       const index = oldIndex + 1
@@ -82,6 +82,14 @@ export default function AppProvider({children}) {
     setCorrect(0)
   }
 
+  const handleChange = (e)=> {
+    console.log(e)
+  }
+
+  const handleSubmit = (e)=> {
+    e.preventDefault()
+  }
+
   return (
     <AppContext.Provider value={{
       waiting, 
@@ -94,6 +102,9 @@ export default function AppProvider({children}) {
       nextQuestion, 
       checkAnswer,
       closeModal,  
+      quiz, 
+      handleChange, 
+      handleSubmit, 
     }}>
       {children}
     </AppContext.Provider>
